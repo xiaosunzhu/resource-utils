@@ -49,12 +49,12 @@ public class UnicodeInputStream extends InputStream {
     String encoding;
     private static final int BOM_SIZE = 4;
 
-    UnicodeInputStream(InputStream in) {
+    public UnicodeInputStream(InputStream in) {
         internalIn = new PushbackInputStream(in, BOM_SIZE);
         this.defaultEnc = null;
     }
 
-    UnicodeInputStream(InputStream in, String defaultEnc) {
+    public UnicodeInputStream(InputStream in, String defaultEnc) {
         internalIn = new PushbackInputStream(in, BOM_SIZE);
         this.defaultEnc = defaultEnc;
     }
