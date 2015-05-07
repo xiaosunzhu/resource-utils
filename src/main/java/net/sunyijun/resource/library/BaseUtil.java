@@ -13,22 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package yijun.sun.resource.config;
+package net.sunyijun.resource.library;
 
 /**
- * Config key interface, that can provide default value
- * when there is not config in config file.<p/>
- * Key must implement {@link #getDefaultValueStr()} method to
- * provide default value string for current key if not config in properties file.
- *
  * @author yijun.sun
  * @since 0.0.1
  */
-public interface IConfigKeyHaveDefault extends IConfigKey {
+public class BaseUtil {
 
     /**
-     * @return default value string for current key if not config in properties file
+     * Get "java.library.path" in system property.
+     *
+     * @return all library paths array.
      */
-    String getDefaultValueStr();
+    public static String[] getLibraryPaths() {
+        String libraryPathString = System.getProperty("java.library.path");
+        String pathSeparator = System.getProperty("path.separator");
+        return libraryPathString.split(pathSeparator);
+    }
+
+    /**
+     * Get just one(first) library path in "java.library.path".
+     *
+     * @return one library path.
+     */
+    public static String getOneLibraryPath() {
+        return getLibraryPaths()[0];
+    }
 
 }
