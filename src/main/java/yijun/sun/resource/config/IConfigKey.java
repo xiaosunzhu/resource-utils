@@ -18,7 +18,26 @@ package yijun.sun.resource.config;
 /**
  * Config key interface.<p/>
  * Key must implement {@link #getKeyString()} method to
- * provide key string in properties file.
+ * provide key string in properties file.<p/>
+ * <p/>
+ * Normally, use enum to provide config keys like this:
+ * <pre>{@code
+ * public enum SelfConfig implements IConfigKey {
+ *     CONFIG1("str"),
+ *     CONFIG2("bool"),
+ *     CONFIG3("num");
+ *
+ *     private final String key;
+ *
+ *     SelfConfig(String key) {
+ *         this.key = key;
+ *     }
+ *
+ *     public String getKeyString() {
+ *         return key;
+ *     }
+ * }
+ * }<pre/>
  *
  * @author yijun.sun
  * @since 0.0.1

@@ -70,7 +70,11 @@ public class OneProperties {
         if (configs == null) {
             loadConfigs();
         }
-        return configs.getProperty(key.getKeyString());
+        String value = configs.getProperty(key.getKeyString());
+        if (value == null && key instanceof IConfigKeyHaveDefault) {
+            return ((IConfigKeyHaveDefault) key).getDefaultValueStr();
+        }
+        return value;
     }
 
     /**
