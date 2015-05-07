@@ -48,8 +48,9 @@ public class Configs {
     /**
      * Default debug config file absolute class path: {@value}
      */
-    public static final String DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH = "/config/debug.properties";
+    public static final String DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH = "/config/self.properties";
 
+    private static final OneProperties VOID_CONFIGS = new OneProperties();
     private static String systemConfigAbsoluteClassPath = DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH;
     private static String debugConfigAbsoluteClassPath = DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH;
 
@@ -147,7 +148,7 @@ public class Configs {
     public static String getSelfConfig(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return null;
+            return VOID_CONFIGS.getConfig(key);
         }
         return configs.getConfig(key);
     }
@@ -162,7 +163,10 @@ public class Configs {
      */
     public static boolean isSelfConfig(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
-        return configs != null && configs.isConfigTrue(key);
+        if (configs == null) {
+            return VOID_CONFIGS.isConfigTrue(key);
+        }
+        return configs.isConfigTrue(key);
     }
 
     /**
@@ -176,7 +180,7 @@ public class Configs {
     public static BigDecimal getSelfConfigDecimal(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return null;
+            return VOID_CONFIGS.getDecimalConfig(key);
         }
         return configs.getDecimalConfig(key);
     }
