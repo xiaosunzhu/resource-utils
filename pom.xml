@@ -7,6 +7,11 @@
     <groupId>net.sunyijun</groupId>
     <artifactId>resource-utils</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <scm>
+        <url>https://github.com/xiaosunzhu/resource-utils</url>
+    </scm>
+
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
