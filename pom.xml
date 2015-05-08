@@ -6,10 +6,12 @@
 
     <groupId>net.sunyijun</groupId>
     <artifactId>resource-utils</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
 
-    <name>smart</name>
-    <description>Smart is a lightweight Java Web Framework and reusable components.</description>
+    <name>ResourceUtils</name>
+    <description>Utils for java project to get resource/lib/dll/.. files,
+        and adapt normal classes,runnable jar,web container and so on. Or easy to get/set configs.
+    </description>
     <url>https://github.com/xiaosunzhu/resource-utils</url>
     <licenses>
         <license>
