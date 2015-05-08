@@ -1,34 +1,35 @@
 package net.sunyijun.resource;
 
-/***
- Base on:
- version: 1.1 / 2007-01-25
- - changed BOM recognition ordering (longer boms first)
- Original pseudocode   : Thomas Weidenfeller
- Implementation tweaked: Aki Nieminen
- http://www.unicode.org/unicode/faq/utf_bom.html
- BOMs:
- 00 00 FE FF    = UTF-32, big-endian
- FF FE 00 00    = UTF-32, little-endian
- EF BB BF       = UTF-8,
- FE FF          = UTF-16, big-endian
- FF FE          = UTF-16, little-endian
- Win2k Notepad:
- Unicode format = UTF-16LE
-
- Update by: yijun.sun 2015-05-04
- ***/
+/**
+ * <p>Base on:
+ * version: 1.1 / 2007-01-25
+ * - changed BOM recognition ordering (longer boms first)
+ * Original pseudocode   : Thomas Weidenfeller
+ * Implementation tweaked: Aki Nieminen
+ * http://www.unicode.org/unicode/faq/utf_bom.html
+ * BOMs:
+ * 00 00 FE FF    = UTF-32, big-endian
+ * FF FE 00 00    = UTF-32, little-endian
+ * EF BB BF       = UTF-8,
+ * FE FF          = UTF-16, big-endian
+ * FF FE          = UTF-16, little-endian
+ * Win2k Notepad:
+ * Unicode format = UTF-16LE
+ * </p>
+ * Update by: yijun.sun 2015-05-04
+ * *
+ */
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 
 /**
- * This inputStream will recognize unicode BOM marks
+ * <p>This inputStream will recognize unicode BOM marks
  * and will skip bytes if getEncoding() or skipBOM() method is called
  * before any of the read(...) methods.
- * <p/>
- * Usage pattern:
+ * </p>
+ * <p>Usage pattern:
  * String enc = "ISO-8859-1"; // or NULL to use systemDefault
  * FileInputStream fis = new FileInputStream(file);
  * UnicodeInputStream uin = new UnicodeInputStream(fis, enc);
@@ -38,7 +39,7 @@ import java.io.PushbackInputStream;
  * else in = new InputStreamReader(uin, enc);
  * or:
  * UnicodeInputStream uin = new UnicodeInputStream(fis, enc).skipBOM();
- * <p/>
+ * </p>
  *
  * @since 0.0.1
  */

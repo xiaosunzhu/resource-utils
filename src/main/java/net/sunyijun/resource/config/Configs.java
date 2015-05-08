@@ -23,15 +23,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
- * Global configs. All methods are static.<p/>
- * Default support 2 config file.<br/>
+ * <p>Global configs. All methods are static.</p>
+ * <p>Default support 2 config file.<br>
  * One is for product function config, called system config,
- * default class path is {@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}.<br/>
+ * default class path is {@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}.<br>
  * Another is for debug function config, called debug config,
- * default class path is {@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}.<br/>
+ * default class path is {@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}.<br>
  * If want to use other path, before get config,
- * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}.<p/>
- * <p/>
+ * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}
+ * </p>
  * If want to use some other config files, can {@link #addSelfConfigs(String, OneProperties)},
  * first param "configAbsoluteClassPath" is class path and also is an identity for config file.
  * When get self config, must provide configAbsoluteClassPath.
@@ -68,7 +68,7 @@ public class Configs {
      *
      * @param key config key
      * @return config value string. Return null if not config in
-     * system config file "{@value #systemConfigAbsoluteClassPath}" or self define system config path.
+     * system config file "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path.
      * @see #setSystemConfigs(String, OneProperties)
      */
     public static String getSystemConfig(IConfigKey key) {
@@ -80,7 +80,7 @@ public class Configs {
      *
      * @param key config key
      * @return true/false. If not config in system config file
-     * "{@value #systemConfigAbsoluteClassPath}" or self define system config path,
+     * "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path,
      * return false.
      * @see #setSystemConfigs(String, OneProperties)
      */
@@ -93,7 +93,7 @@ public class Configs {
      *
      * @param key config key
      * @return config BigDecimal value. Return null if not config in
-     * system config file "{@value #systemConfigAbsoluteClassPath}" or self define system config path.
+     * system config file "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path.
      * @see #setSystemConfigs(String, OneProperties)
      */
     public static BigDecimal getSystemConfigDecimal(IConfigKey key) {
@@ -105,7 +105,7 @@ public class Configs {
      *
      * @param key config key
      * @return config value string. Return null if not config in
-     * debug config file "{@value #debugConfigAbsoluteClassPath}" or self define debug config path.
+     * debug config file "{@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}" or self define debug config path.
      * @see #setDebugConfigs(OneProperties, String)
      */
     public static String getDebugConfig(IConfigKey key) {
@@ -117,7 +117,7 @@ public class Configs {
      *
      * @param key config key
      * @return true/false. If not config in debug config file
-     * "{@value #debugConfigAbsoluteClassPath}" or self define debug config path,
+     * "{@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}" or self define debug config path,
      * return false.
      * @see #setDebugConfigs(OneProperties, String)
      */
@@ -130,7 +130,7 @@ public class Configs {
      *
      * @param key config key
      * @return config BigDecimal value. Return null if not config in
-     * debug config file "{@value #debugConfigAbsoluteClassPath}" or self debug system config path.
+     * debug config file "{@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}" or self debug system config path.
      * @see #setDebugConfigs(OneProperties, String)
      */
     public static BigDecimal getDebugConfigDecimal(IConfigKey key) {
@@ -189,6 +189,7 @@ public class Configs {
      * Modify system configs.
      *
      * @param modifyConfig need update configs. If one value is null, will not update that one.
+     * @throws IOException
      */
     public static void modifySystemConfig(Map<IConfigKey, String> modifyConfig) throws IOException {
         systemConfigs.modifyConfig(modifyConfig);
@@ -199,6 +200,7 @@ public class Configs {
      *
      * @param key   need update config's key
      * @param value new config value
+     * @throws IOException
      */
     public static void modifySystemConfig(IConfigKey key, String value) throws IOException {
         systemConfigs.modifyConfig(key, value);
@@ -208,6 +210,7 @@ public class Configs {
      * Modify debug configs.
      *
      * @param modifyConfig need update configs. If one value is null, will not update that one.
+     * @throws IOException
      */
     public static void modifyDebugConfig(Map<IConfigKey, String> modifyConfig) throws IOException {
         debugConfigs.modifyConfig(modifyConfig);
@@ -218,6 +221,7 @@ public class Configs {
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
      * @param modifyConfig            need update configs. If one value is null, will not update that one.
+     * @throws IOException
      */
     public static void modifySelfConfig(String configAbsoluteClassPath, Map<IConfigKey, String> modifyConfig)
             throws IOException {
@@ -234,6 +238,7 @@ public class Configs {
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
      * @param key                     need update config's key
      * @param value                   new config value
+     * @throws IOException
      */
     public static void modifySelfConfig(String configAbsoluteClassPath, IConfigKey key, String value)
             throws IOException {
@@ -241,7 +246,7 @@ public class Configs {
     }
 
     /**
-     * Add self define configs file.<p/>
+     * <p>Add self define configs file.</p>
      * Can use self configs path or self class extends {@link OneProperties}.
      *
      * @param configAbsoluteClassPath self configs absolute class path.
@@ -268,12 +273,12 @@ public class Configs {
     }
 
     /**
-     * Set self define system configs.<p/>
+     * <p>Set self define system configs.</p>
      * Can use self system configs path or self class extends {@link OneProperties}.
      *
      * @param systemConfigAbsoluteClassPath self system configs absolute class path.
      *                                      Can be null, if null means use
-     *                                      default path "{@value #systemConfigAbsoluteClassPath}"
+     *                                      default path "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}"
      * @param systemConfigsObj              self class extends {@link OneProperties}.
      *                                      Can be null, if null means not use self class.
      * @see OneProperties
@@ -291,13 +296,13 @@ public class Configs {
     }
 
     /**
-     * Set self define debug configs.<p/>
+     * <p>Set self define debug configs.</p>
      * Can use self debug configs path or self class extends {@link OneProperties}.
      *
      * @param debugConfigsObj              self class extends {@link OneProperties}.
      *                                     If null means not use self class.
      * @param debugConfigAbsoluteClassPath self system configs path.
-     *                                     If null means use default path "{@value #debugConfigAbsoluteClassPath}"
+     *                                     If null means use default path "{@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}"
      * @see OneProperties
      */
     public static void setDebugConfigs(OneProperties debugConfigsObj, String debugConfigAbsoluteClassPath) {

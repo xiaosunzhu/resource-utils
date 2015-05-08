@@ -60,7 +60,7 @@ public class OneProperties {
     }
 
     /**
-     * Get config string.<p/>
+     * <p>Get config string.</p>
      * If not config will return null.
      *
      * @param key config key
@@ -78,7 +78,7 @@ public class OneProperties {
     }
 
     /**
-     * Get config bool value. For true/false config.<p/>
+     * <p>Get config bool value. For true/false config.</p>
      * If not config will return false.
      *
      * @param key config key
@@ -94,7 +94,7 @@ public class OneProperties {
     }
 
     /**
-     * Get config decimal value. For all number config.<p/>
+     * <p>Get config decimal value. For all number config.</p>
      * If not config will return null.
      *
      * @param key config key
@@ -124,7 +124,7 @@ public class OneProperties {
     }
 
     /**
-     * Modify configs and write new configs into properties file.<p/>
+     * <p>Modify configs and write new configs into properties file.</p>
      * If new config value is null, will not update old value.
      *
      * @param modifyConfig need update config map.

@@ -22,7 +22,7 @@ import java.net.URL;
 
 
 /**
- * Copy resources to file system.<br/>
+ * Copy resources to file system.<br>
  *
  * @author yijun.sun
  * @since 0.0.1

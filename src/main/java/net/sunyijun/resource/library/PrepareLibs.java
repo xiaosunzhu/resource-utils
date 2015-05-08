@@ -26,11 +26,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Methods to prepare(copy or load) libraries.
- * <p/>
+ * <p>Methods to prepare(copy or load) libraries.
+ * </p>
  * If library file will change, must use {@link #initialLibFiles} method before
  * {@link #loadLibFiles}. If won't changed at all, just {@link #loadLibFiles}.
- * This may call System.loadLibrary()<br/>
+ * This may call System.loadLibrary()<br>
  * If library file is dll or so files, can use {@link #loadDllFiles} or {@link #loadSoFiles}
  * instead of {@link #loadLibFiles}.
  *
@@ -42,8 +42,8 @@ public class PrepareLibs {
     private final static String ONE_SYSTEM_LIBRARY_PATH = BaseUtil.getOneLibraryPath();
 
     /**
-     * Initial library resources: copy resources from class path
-     * to library path either library file exists or not exists in library path.<p/>
+     * <p>Initial library resources: copy resources from class path
+     * to library path either library file exists or not exists in library path.</p>
      * Use this method can use newest library file.
      *
      * @param libAbsoluteClassPaths library absolute class path(start with"/"), include file name.
@@ -100,8 +100,8 @@ public class PrepareLibs {
     }
 
     /**
-     * Prepare library resources: copy resources from class path
-     * to library path when library file not exists in library path.<p/>
+     * <p>Prepare library resources: copy resources from class path
+     * to library path when library file not exists in library path.</p>
      * Use this method can avoid copy same lib more than once.
      * But if lib changed, it will not work till use {@link #initialLibFiles}.
      *

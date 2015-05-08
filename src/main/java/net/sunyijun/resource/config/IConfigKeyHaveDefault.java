@@ -16,8 +16,8 @@
 package net.sunyijun.resource.config;
 
 /**
- * Config key interface, that can provide default value
- * when there is not config in config file.<p/>
+ * <p>Config key interface, that can provide default value
+ * when there is not config in config file.</p>
  * Key must implement {@link #getDefaultValueStr()} method to
  * provide default value string for current key if not config in properties file.
  *
