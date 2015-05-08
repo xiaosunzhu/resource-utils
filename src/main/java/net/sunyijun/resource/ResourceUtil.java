@@ -66,7 +66,7 @@ public class ResourceUtil {
      * Get absolute path in file system from a classPath. If this resource not exists, return null.
      */
     public static String getAbsolutePath(String classPath) {
-        URL configUrl = ResourceUtil.class.getResource(classPath);
+        URL configUrl = Thread.currentThread().getContextClassLoader().getResource(classPath);
         if (configUrl == null) {
             return null;
         }

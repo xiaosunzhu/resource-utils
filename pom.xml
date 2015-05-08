@@ -6,7 +6,7 @@
 
     <groupId>net.sunyijun</groupId>
     <artifactId>resource-utils</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>smart</name>
     <description>Smart is a lightweight Java Web Framework and reusable components.</description>
