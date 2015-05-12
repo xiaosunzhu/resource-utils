@@ -2,7 +2,7 @@
 Utils for java project to get resource/lib/dll/.. files, and adapt normal classes,runnable jar,web container and so on. Or easy to get/set configs.
 
 
-## Base Utils
+## Basic Utils
 
 ### ResourceUtil
 Functions:
@@ -27,6 +27,7 @@ A Reader wrapper campatible for unicode file. Like UnicodeInputStream.
 
 ### BaseUtil
 Functions:
+
 - Get java library paths or one path. Where jvm can find libraris.
 
 ### PrepareLibs
