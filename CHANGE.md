@@ -3,6 +3,7 @@ Publish: 2015-05-12
 
 * Fixed
     1. ResourceUtil.getAbsolutePath() can't find resource, return null.
+    2. Get self config with prefix not add prefix.
 
 
 ### 0.0.2 ###

@@ -219,7 +219,7 @@ public class Configs {
         if (configs == null) {
             return VOID_CONFIGS.getConfig(keyPrefix, key);
         }
-        return configs.getConfig(key);
+        return configs.getConfig(keyPrefix, key);
     }
 
     /**
@@ -255,7 +255,7 @@ public class Configs {
         if (configs == null) {
             return VOID_CONFIGS.isConfigTrue(keyPrefix, key);
         }
-        return configs.isConfigTrue(key);
+        return configs.isConfigTrue(keyPrefix, key);
     }
 
     /**
@@ -291,7 +291,7 @@ public class Configs {
         if (configs == null) {
             return VOID_CONFIGS.getDecimalConfig(keyPrefix, key);
         }
-        return configs.getDecimalConfig(key);
+        return configs.getDecimalConfig(keyPrefix, key);
     }
 
     /**
