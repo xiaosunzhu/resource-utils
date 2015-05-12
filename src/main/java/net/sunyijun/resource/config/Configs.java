@@ -77,8 +77,8 @@ public class Configs {
 
     /**
      * <p>Get system config string. Config key include prefix.</p>
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * getSystemConfig("1.", key); will return "1.test" config value in system config file.
      *
      * @param keyPrefix config key prefix
@@ -106,8 +106,8 @@ public class Configs {
 
     /**
      * Get debug config boolean value. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * isSystemConfig("1.", key); will return "1.test" config value in system config file.
      *
      * @param keyPrefix config key prefix
@@ -135,8 +135,8 @@ public class Configs {
 
     /**
      * Get system config decimal. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * getSystemConfigDecimal("1.", key); will return "1.test" config value in system config file.
      *
      * @param keyPrefix config key prefix
@@ -204,8 +204,8 @@ public class Configs {
 
     /**
      * Get self config string. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * getSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
@@ -240,8 +240,8 @@ public class Configs {
 
     /**
      * Get self config boolean value. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * isSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
@@ -276,8 +276,8 @@ public class Configs {
 
     /**
      * Get self config decimal. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * getSelfConfigDecimal("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
@@ -317,8 +317,8 @@ public class Configs {
 
     /**
      * Modify one system config. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * modifySystemConfig("1.", key, "newValue"); will modify "1.test" config value in system config file.
      *
      * @param keyPrefix config key prefix
@@ -375,8 +375,8 @@ public class Configs {
 
     /**
      * Modify one self config. Config key include prefix.
-     * Example:<br/>
-     * If key.getKeyString() is "test", <br/>
+     * Example:<br>
+     * If key.getKeyString() is "test", <br>
      * modifySelfConfig("/self.properties", "1.", key, "newValue"); will modify "1.test" config value in "/self.properties".
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
