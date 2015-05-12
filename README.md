@@ -67,13 +67,15 @@ Use enum to provide config keys like this:
     }
 
 ### Configs
-Global configs. All methods are static.
+Global configs. All methods are static. Can easy to get config values in config files. Support add prefix for key string, this can simulate split configs with sections.
 Default support 2 config file. One is for product function config, called system config, default class path is "/config/config.properties". Another is for debug function config, called debug config, default class path is "/config/debug.properties".
 
 Get or modify default product config:
 
     String configStr = Configs.getSystemConfig(SelfConfig.CONFIG1); // get str=... in /config/config.properties
+    String configStr = Configs.getSystemConfig("1.", SelfConfig.CONFIG1); // get 1.str=... in /config/config.properties
     boolean configBool = Configs.isSystemConfig(SelfConfig.CONFIG2); // get bool=... in /config/config.properties
     BigDecimal configNum = Configs.getSystemConfigDecimal(SelfConfig.CONFIG3); // get num=... in /config/config.properties
     
     Configs.modifySystemConfig(SelfConfig.CONFIG1, "newValue"); // set str=newValue in /config/config.properties
+    Configs.modifySystemConfig("1.", SelfConfig.CONFIG1, "newValue"); // set 1.str=newValue in /config/config.properties
