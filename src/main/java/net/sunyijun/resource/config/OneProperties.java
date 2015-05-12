@@ -78,6 +78,25 @@ public class OneProperties {
     }
 
     /**
+     * <p>Get config string. Config key with prefix.</p>
+     * If not config will return null.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return string value
+     */
+    protected String getConfig(String keyPrefix, IConfigKey key) {
+        if (configs == null) {
+            loadConfigs();
+        }
+        String value = configs.getProperty(keyPrefix + key.getKeyString());
+        if (value == null && key instanceof IConfigKeyHaveDefault) {
+            return ((IConfigKeyHaveDefault) key).getDefaultValueStr();
+        }
+        return value;
+    }
+
+    /**
      * <p>Get config bool value. For true/false config.</p>
      * If not config will return false.
      *
@@ -86,6 +105,23 @@ public class OneProperties {
      */
     protected boolean isConfigTrue(IConfigKey key) {
         String value = getConfig(key);
+        if (value == null) {
+            return false;
+        }
+        value = value.toLowerCase();
+        return TRUE.equals(value);
+    }
+
+    /**
+     * <p>Get config bool value. For true/false config. Config key with prefix.</p>
+     * If not config will return false.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return true/false
+     */
+    protected boolean isConfigTrue(String keyPrefix, IConfigKey key) {
+        String value = getConfig(keyPrefix, key);
         if (value == null) {
             return false;
         }
@@ -110,6 +146,23 @@ public class OneProperties {
     }
 
     /**
+     * <p>Get config decimal value. For all number config. Config key with prefix.</p>
+     * If not config will return null.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return BigDecimal object.
+     * @see BigDecimal
+     */
+    protected BigDecimal getDecimalConfig(String keyPrefix, IConfigKey key) {
+        String value = getConfig(keyPrefix, key);
+        if (value == null) {
+            return null;
+        }
+        return new BigDecimal(value);
+    }
+
+    /**
      * Modify one config and write new config into properties file.
      *
      * @param key   need update config key
@@ -120,6 +173,21 @@ public class OneProperties {
             loadConfigs();
         }
         configs.setProperty(key.getKeyString(), value);
+        PropertiesIO.store(propertiesFilePath, configs);
+    }
+
+    /**
+     * Modify one config and write new config into properties file. Config key with prefix.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       need update config key
+     * @param value     new value
+     */
+    protected void modifyConfig(String keyPrefix, IConfigKey key, String value) throws IOException {
+        if (configs == null) {
+            loadConfigs();
+        }
+        configs.setProperty(keyPrefix + key.getKeyString(), value);
         PropertiesIO.store(propertiesFilePath, configs);
     }
 

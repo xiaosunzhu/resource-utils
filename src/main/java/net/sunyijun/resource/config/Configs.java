@@ -76,6 +76,22 @@ public class Configs {
     }
 
     /**
+     * <p>Get system config string. Config key include prefix.</p>
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * getSystemConfig("1.", key); will return "1.test" config value in system config file.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return config value string. Return null if not config in
+     * system config file "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path.
+     * @see #setSystemConfigs(String, OneProperties)
+     */
+    public static String getSystemConfig(String keyPrefix, IConfigKey key) {
+        return systemConfigs.getConfig(keyPrefix, key);
+    }
+
+    /**
      * Get debug config boolean value
      *
      * @param key config key
@@ -89,6 +105,23 @@ public class Configs {
     }
 
     /**
+     * Get debug config boolean value. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * isSystemConfig("1.", key); will return "1.test" config value in system config file.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return true/false. If not config in system config file
+     * "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path,
+     * return false.
+     * @see #setSystemConfigs(String, OneProperties)
+     */
+    public static boolean isSystemConfig(String keyPrefix, IConfigKey key) {
+        return systemConfigs.isConfigTrue(keyPrefix, key);
+    }
+
+    /**
      * Get system config decimal.
      *
      * @param key config key
@@ -98,6 +131,22 @@ public class Configs {
      */
     public static BigDecimal getSystemConfigDecimal(IConfigKey key) {
         return systemConfigs.getDecimalConfig(key);
+    }
+
+    /**
+     * Get system config decimal. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * getSystemConfigDecimal("1.", key); will return "1.test" config value in system config file.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       config key
+     * @return config BigDecimal value. Return null if not config in
+     * system config file "{@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}" or self define system config path.
+     * @see #setSystemConfigs(String, OneProperties)
+     */
+    public static BigDecimal getSystemConfigDecimal(String keyPrefix, IConfigKey key) {
+        return systemConfigs.getDecimalConfig(keyPrefix, key);
     }
 
     /**
@@ -154,6 +203,26 @@ public class Configs {
     }
 
     /**
+     * Get self config string. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * getSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     *
+     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param keyPrefix               config key prefix
+     * @param key                     config key in configAbsoluteClassPath config file
+     * @return config value string. Return null if not add config file or not config in config file.
+     * @see #addSelfConfigs(String, OneProperties)
+     */
+    public static String getSelfConfig(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
+        OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
+        if (configs == null) {
+            return VOID_CONFIGS.getConfig(keyPrefix, key);
+        }
+        return configs.getConfig(key);
+    }
+
+    /**
      * Get self config boolean value
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
@@ -170,6 +239,26 @@ public class Configs {
     }
 
     /**
+     * Get self config boolean value. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * isSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     *
+     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param keyPrefix               config key prefix
+     * @param key                     config key in configAbsoluteClassPath config file
+     * @return true/false. If not add config file or not config in config file, return false.
+     * @see #addSelfConfigs(String, OneProperties)
+     */
+    public static boolean isSelfConfig(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
+        OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
+        if (configs == null) {
+            return VOID_CONFIGS.isConfigTrue(keyPrefix, key);
+        }
+        return configs.isConfigTrue(key);
+    }
+
+    /**
      * Get self config decimal.
      *
      * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
@@ -181,6 +270,26 @@ public class Configs {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
             return VOID_CONFIGS.getDecimalConfig(key);
+        }
+        return configs.getDecimalConfig(key);
+    }
+
+    /**
+     * Get self config decimal. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * getSelfConfigDecimal("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     *
+     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param keyPrefix               config key prefix
+     * @param key                     config key in configAbsoluteClassPath config file
+     * @return config BigDecimal value. Return null if not add config file or not config in config file.
+     * @see #addSelfConfigs(String, OneProperties)
+     */
+    public static BigDecimal getSelfConfigDecimal(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
+        OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
+        if (configs == null) {
+            return VOID_CONFIGS.getDecimalConfig(keyPrefix, key);
         }
         return configs.getDecimalConfig(key);
     }
@@ -204,6 +313,21 @@ public class Configs {
      */
     public static void modifySystemConfig(IConfigKey key, String value) throws IOException {
         systemConfigs.modifyConfig(key, value);
+    }
+
+    /**
+     * Modify one system config. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * modifySystemConfig("1.", key, "newValue"); will modify "1.test" config value in system config file.
+     *
+     * @param keyPrefix config key prefix
+     * @param key       need update config's key
+     * @param value     new config value
+     * @throws IOException
+     */
+    public static void modifySystemConfig(String keyPrefix, IConfigKey key, String value) throws IOException {
+        systemConfigs.modifyConfig(keyPrefix, key, value);
     }
 
     /**
@@ -242,7 +366,32 @@ public class Configs {
      */
     public static void modifySelfConfig(String configAbsoluteClassPath, IConfigKey key, String value)
             throws IOException {
-        systemConfigs.modifyConfig(key, value);
+        OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
+        if (configs == null) {
+            return;
+        }
+        configs.modifyConfig(key, value);
+    }
+
+    /**
+     * Modify one self config. Config key include prefix.
+     * Example:<br/>
+     * If key.getKeyString() is "test", <br/>
+     * modifySelfConfig("/self.properties", "1.", key, "newValue"); will modify "1.test" config value in "/self.properties".
+     *
+     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param keyPrefix               config key prefix
+     * @param key                     need update config's key
+     * @param value                   new config value
+     * @throws IOException
+     */
+    public static void modifySelfConfig(String configAbsoluteClassPath, String keyPrefix, IConfigKey key, String value)
+            throws IOException {
+        OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
+        if (configs == null) {
+            return;
+        }
+        configs.modifyConfig(keyPrefix, key, value);
     }
 
     /**
