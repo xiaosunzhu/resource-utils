@@ -68,6 +68,9 @@ public class ResourceUtil {
     public static String getAbsolutePath(String classPath) {
         URL configUrl = Thread.currentThread().getContextClassLoader().getResource(classPath.substring(1));
         if (configUrl == null) {
+            configUrl = ResourceUtil.class.getResource(classPath);
+        }
+        if (configUrl == null) {
             return null;
         }
         try {

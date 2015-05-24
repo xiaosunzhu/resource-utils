@@ -6,7 +6,7 @@
 
     <groupId>net.sunyijun</groupId>
     <artifactId>resource-utils</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
 
     <name>ResourceUtils</name>
     <description>Utils for java project to get resource/lib/dll/.. files,
@@ -40,6 +40,20 @@
             <version>1.1.2</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <target>1.5</target>
+                    <encoding>UTF8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>

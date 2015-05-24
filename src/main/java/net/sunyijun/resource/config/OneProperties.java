@@ -17,8 +17,11 @@ package net.sunyijun.resource.config;
 
 
 import net.sunyijun.resource.ResourceUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Properties;
@@ -34,6 +37,7 @@ public class OneProperties {
 
     private static final String TRUE = "true";
 
+    private String propertiesAbsoluteClassPath;
     private String propertiesFilePath;
 
     /**
@@ -48,6 +52,7 @@ public class OneProperties {
      * Init properties file path. Will reload configs every time.
      */
     void initConfigs(String propertiesAbsoluteClassPath) {
+        this.propertiesAbsoluteClassPath = propertiesAbsoluteClassPath;
         this.propertiesFilePath = ResourceUtil.getAbsolutePath(propertiesAbsoluteClassPath);
         loadConfigs();
     }
@@ -56,7 +61,23 @@ public class OneProperties {
      * Load properties. Will refresh configs every time.
      */
     protected void loadConfigs() {
-        configs = PropertiesIO.load(propertiesFilePath);
+        if (propertiesFilePath == null) {
+            InputStream is = OneProperties.class.getResourceAsStream(propertiesAbsoluteClassPath);
+            if (is == null) {
+                configs = new Properties();
+                return;
+            }
+            try {
+                configs = PropertiesIO.load(is);
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException ignored) {
+                }
+            }
+        } else {
+            configs = PropertiesIO.load(propertiesFilePath);
+        }
     }
 
     /**
@@ -169,6 +190,9 @@ public class OneProperties {
      * @param value new value
      */
     protected void modifyConfig(IConfigKey key, String value) throws IOException {
+        if (propertiesFilePath == null) {
+            LOGGER.warn("Config " + propertiesAbsoluteClassPath + " is not a file, maybe just a resource in library.");
+        }
         if (configs == null) {
             loadConfigs();
         }
@@ -184,6 +208,9 @@ public class OneProperties {
      * @param value     new value
      */
     protected void modifyConfig(String keyPrefix, IConfigKey key, String value) throws IOException {
+        if (propertiesFilePath == null) {
+            LOGGER.warn("Config " + propertiesAbsoluteClassPath + " is not a file, maybe just a resource in library.");
+        }
         if (configs == null) {
             loadConfigs();
         }
@@ -198,6 +225,9 @@ public class OneProperties {
      * @param modifyConfig need update config map.
      */
     protected void modifyConfig(Map<IConfigKey, String> modifyConfig) throws IOException {
+        if (propertiesFilePath == null) {
+            LOGGER.warn("Config " + propertiesAbsoluteClassPath + " is not a file, maybe just a resource in library.");
+        }
         if (configs == null) {
             loadConfigs();
         }
@@ -209,4 +239,5 @@ public class OneProperties {
         PropertiesIO.store(propertiesFilePath, configs);
     }
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(OneProperties.class);
 }

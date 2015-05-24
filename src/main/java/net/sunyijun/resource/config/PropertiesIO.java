@@ -64,6 +64,21 @@ class PropertiesIO {
     }
 
     /**
+     * Read properties file.
+     *
+     * @param inputStream properties file input stream. This method will not close the input stream.
+     */
+    public static Properties load(InputStream inputStream) {
+        Properties configs = new Properties();
+        try {
+            configs.load(new UnicodeInputStream(inputStream).skipBOM());
+        } catch (IOException e) {
+            LOGGER.warn("Load properties from inputStream error!", e);
+        }
+        return configs;
+    }
+
+    /**
      * Write into properties file.
      *
      * @param absolutePath absolute path in file system.
