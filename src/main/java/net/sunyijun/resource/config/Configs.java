@@ -217,7 +217,11 @@ public class Configs {
     public static String getSelfConfig(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.getConfig(keyPrefix, key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.getConfig(keyPrefix, key);
+            }
         }
         return configs.getConfig(keyPrefix, key);
     }
@@ -233,7 +237,11 @@ public class Configs {
     public static boolean isSelfConfig(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.isConfigTrue(key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.isConfigTrue(key);
+            }
         }
         return configs.isConfigTrue(key);
     }
@@ -253,7 +261,11 @@ public class Configs {
     public static boolean isSelfConfig(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.isConfigTrue(keyPrefix, key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.isConfigTrue(keyPrefix, key);
+            }
         }
         return configs.isConfigTrue(keyPrefix, key);
     }
@@ -269,7 +281,11 @@ public class Configs {
     public static BigDecimal getSelfConfigDecimal(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.getDecimalConfig(key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.getDecimalConfig(key);
+            }
         }
         return configs.getDecimalConfig(key);
     }
@@ -289,7 +305,11 @@ public class Configs {
     public static BigDecimal getSelfConfigDecimal(String configAbsoluteClassPath, String keyPrefix, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.getDecimalConfig(keyPrefix, key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.getDecimalConfig(keyPrefix, key);
+            }
         }
         return configs.getDecimalConfig(keyPrefix, key);
     }

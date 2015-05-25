@@ -62,6 +62,10 @@ public class OneProperties {
      */
     protected void loadConfigs() {
         if (propertiesFilePath == null) {
+            if(propertiesAbsoluteClassPath == null) {
+                configs = new Properties();
+                return;
+            }
             InputStream is = OneProperties.class.getResourceAsStream(propertiesAbsoluteClassPath);
             if (is == null) {
                 configs = new Properties();
