@@ -1,11 +1,9 @@
 ### 0.0.4 ###
-Publish: 2015-05-25
+Publish: 2015-05-26
 
 * Functions
     1. Modify Configs usage, support auto add self config when get self config.
     2. If not found configure file, try get as resource.
-
-* Fixed
 
 
 ### 0.0.3 ###
