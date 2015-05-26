@@ -32,9 +32,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * If want to use other path, before get config,
  * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}
  * </p>
- * If want to use some other config files, can {@link #addSelfConfigs(String, OneProperties)},
+ * If want to use some other config files, when get self config, must provide configAbsoluteClassPath,
  * first param "configAbsoluteClassPath" is class path and also is an identity for config file.
- * When get self config, must provide configAbsoluteClassPath.
+ * If want to extends OneProperties, can {@link #addSelfConfigs(String, OneProperties)}.
  *
  * @author yijun.sun
  * @since 0.0.1
