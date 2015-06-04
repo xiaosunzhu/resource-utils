@@ -16,6 +16,8 @@
 package net.sunyijun.resource.library;
 
 /**
+ * Library path utils.
+ *
  * @author yijun.sun
  * @since 0.0.1
  */

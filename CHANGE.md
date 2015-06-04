@@ -1,3 +1,11 @@
+### 0.0.5 ###
+Publish: 2015-06-
+
+* Functions
+    1. Add utils to test if current project start main in a jar, use java -jar ...
+    1. Add utils to get class paths, may include class path in manifest file, or may get class path exclude jar ...
+
+
 ### 0.0.4 ###
 Publish: 2015-05-26
 
