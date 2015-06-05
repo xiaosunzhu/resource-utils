@@ -1,5 +1,5 @@
 ### 0.0.5 ###
-Publish: 2015-06-
+Publish: 2015-06-05
 
 * Functions
     1. Add utils to test if current project start main in a jar, use java -jar ...
