@@ -6,7 +6,7 @@
 
     <groupId>net.sunyijun</groupId>
     <artifactId>resource-utils</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.5</version>
 
     <name>ResourceUtils</name>
     <description>Utils for java project to get resource/lib/dll/.. files,
