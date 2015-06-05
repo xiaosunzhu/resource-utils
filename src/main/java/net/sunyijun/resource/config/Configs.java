@@ -32,7 +32,8 @@ import java.util.concurrent.ConcurrentHashMap;
  * default class path is {@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}.<br>
  * If want to use other path, before get config,
  * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}<br>
- * <p/>
+ * </p>
+ * <p>
  * If want to use some other config files, when get self config, must provide configAbsoluteClassPath,
  * first param "configAbsoluteClassPath" is class path and also is an identity for config file.
  * If want to extends OneProperties, can {@link #addSelfConfigs(String, OneProperties)}.
