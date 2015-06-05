@@ -35,7 +35,11 @@ public class ClassPathUtil {
     private static volatile String[] classPathsInSystemProperty;
     private static volatile String[] classPathsIncludeManifest;
 
-
+    /**
+     * Test if current run as a jar(java -jar ....jar).
+     *
+     * @return if use java -jar ....jar to run, return true, else return false.
+     */
     public static boolean testRunMainInJar() {
         if (runInJar == null) {
             synchronized (ClassPathUtil.class) {
@@ -57,7 +61,15 @@ public class ClassPathUtil {
         return !(runCommand == null || runCommand.trim().isEmpty()) && runCommand.contains(classPath);
     }
 
-    public static String[] getClassPaths() {
+    /**
+     * <p>
+     * Get all class path strings.
+     * </p>
+     * Uncertain is relative or absolute.<br>
+     *
+     * @return all class path string array.
+     */
+    public static String[] getAllClassPaths() {
         if (testRunMainInJar()) {
             return getClassPathsIncludeManifest();
         } else {
@@ -65,8 +77,16 @@ public class ClassPathUtil {
         }
     }
 
-    public static List<String> getAllClassPathNotInJar() {
-        String[] allClassPath = getClassPaths();
+    /**
+     * <p>
+     * Get all class path strings that is file system path, not jar file.
+     * </p>
+     * Uncertain is relative or absolute.<br>
+     *
+     * @return class paths that is file system path.
+     */
+    public static String[] getAllClassPathNotInJar() {
+        String[] allClassPath = getAllClassPaths();
         List<String> allClassPathNotInJar = new ArrayList<String>();
         for (String classPath : allClassPath) {
             if (classPath.endsWith("jar")) {
@@ -74,10 +94,19 @@ public class ClassPathUtil {
             }
             allClassPathNotInJar.add(classPath);
         }
-        return allClassPathNotInJar;
+        return allClassPathNotInJar.toArray(new String[allClassPathNotInJar.size()]);
     }
 
-    private static String[] getClassPathsInSystemProperty() {
+    /**
+     * <p>
+     * Get class path from System.getProperty("java.class.path").
+     * </p>
+     * If run in jar(java -jar ....jar), this class path is just running jar file,
+     * more class path can't get from system properties, must get from "Class-Path" in manifest file.
+     *
+     * @return all class path string array.
+     */
+    public static String[] getClassPathsInSystemProperty() {
         if (classPathsInSystemProperty == null) {
             synchronized (ClassPathUtil.class) {
                 if (classPathsInSystemProperty == null) {

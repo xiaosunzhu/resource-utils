@@ -24,17 +24,23 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * <p>Global configs. All methods are static.</p>
- * <p>Default support 2 config file.<br>
+ * <p>
+ * Default support 2 config file.<br>
  * One is for product function config, called system config,
  * default class path is {@value #DEFAULT_SYSTEM_CONFIG_ABSOLUTE_CLASS_PATH}.<br>
  * Another is for debug function config, called debug config,
  * default class path is {@value #DEFAULT_DEBUG_CONFIG_ABSOLUTE_CLASS_PATH}.<br>
  * If want to use other path, before get config,
- * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}
- * </p>
+ * call {@link #setSystemConfigs(String, OneProperties)} or {@link #setDebugConfigs(OneProperties, String)}<br>
+ * <p/>
  * If want to use some other config files, when get self config, must provide configAbsoluteClassPath,
  * first param "configAbsoluteClassPath" is class path and also is an identity for config file.
  * If want to extends OneProperties, can {@link #addSelfConfigs(String, OneProperties)}.
+ * </p>
+ * <p>
+ * If current run as a jar(java -jar ....jar), find config in file system classpath first,
+ * if not found, then get resource in jar.
+ * </p>
  *
  * @author yijun.sun
  * @since 0.0.1

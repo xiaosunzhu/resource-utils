@@ -16,12 +16,12 @@
 package net.sunyijun.resource.config;
 
 
+import net.sunyijun.resource.ClassPathUtil;
 import net.sunyijun.resource.ResourceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Properties;
@@ -61,26 +61,57 @@ public class OneProperties {
      * Load properties. Will refresh configs every time.
      */
     protected void loadConfigs() {
+        configs = new Properties();
+        // If run as a jar, find in file system classpath first, if not found, then get resource in jar.
+        if (ClassPathUtil.testRunMainInJar()) {
+            String[] classPathsInFileSystem = ClassPathUtil.getAllClassPathNotInJar();
+            String workDir = System.getProperty("user.dir");
+            String mainJarRelativePath = ClassPathUtil.getClassPathsInSystemProperty()[0];
+            File mainJar = new File(workDir, mainJarRelativePath);
+            File mainJarDir = mainJar.getParentFile();
+            for (String classPath : classPathsInFileSystem) {
+                File classPathFile = new File(classPath);
+                File configFile;
+                if (classPathFile.isAbsolute()) {
+                    configFile = new File(classPathFile, propertiesAbsoluteClassPath);
+                } else {
+                    configFile = new File(new File(mainJarDir, classPath), propertiesAbsoluteClassPath);
+                }
+                if (configFile.exists() && configFile.isFile()) {
+                    InputStream is = null;
+                    try {
+                        is = new FileInputStream(configFile);
+                        loadConfigsFromStream(is);
+                    } catch (FileNotFoundException e) {
+                        LOGGER.warn("Load config file " + configFile.getPath() + " error!", e);
+                    }
+                    return;
+                }
+            }
+        }
         if (propertiesFilePath == null) {
-            if(propertiesAbsoluteClassPath == null) {
-                configs = new Properties();
+            if (propertiesAbsoluteClassPath == null) {
                 return;
             }
             InputStream is = OneProperties.class.getResourceAsStream(propertiesAbsoluteClassPath);
-            if (is == null) {
-                configs = new Properties();
-                return;
-            }
-            try {
-                configs = PropertiesIO.load(is);
-            } finally {
-                try {
-                    is.close();
-                } catch (IOException ignored) {
-                }
-            }
+            loadConfigsFromStream(is);
         } else {
             configs = PropertiesIO.load(propertiesFilePath);
+        }
+    }
+
+    private void loadConfigsFromStream(InputStream is) {
+        if (is == null) {
+            configs = new Properties();
+            return;
+        }
+        try {
+            configs = PropertiesIO.load(is);
+        } finally {
+            try {
+                is.close();
+            } catch (IOException ignored) {
+            }
         }
     }
 
@@ -244,4 +275,5 @@ public class OneProperties {
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OneProperties.class);
+
 }
