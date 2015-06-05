@@ -71,6 +71,8 @@ Use enum to provide config keys like this:
 Global configs. All methods are static. Can easy to get config values in config files. Support add prefix for key string, this can simulate split configs with sections.
 Default support 2 config file. One is for product function config, called system config, default class path is "/config/config.properties". Another is for debug function config, called debug config, default class path is "/config/debug.properties".
 
+If run as a jar(java -jar ....jar), will first to find config in classpath which not a jar file. If not found in file system, then to find in jar.
+
 Get or modify default product config:
 
     String configStr = Configs.getSystemConfig(SelfConfig.CONFIG1); // get str=... in /config/config.properties
