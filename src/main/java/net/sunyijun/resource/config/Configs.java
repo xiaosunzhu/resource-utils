@@ -196,7 +196,7 @@ public class Configs {
     /**
      * Get self config string.
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param key                     config key in configAbsoluteClassPath config file
      * @return config value string. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
@@ -204,7 +204,11 @@ public class Configs {
     public static String getSelfConfig(String configAbsoluteClassPath, IConfigKey key) {
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
-            return VOID_CONFIGS.getConfig(key);
+            addSelfConfigs(configAbsoluteClassPath, null);
+            configs = otherConfigs.get(configAbsoluteClassPath);
+            if (configs == null) {
+                return VOID_CONFIGS.getConfig(key);
+            }
         }
         return configs.getConfig(key);
     }
@@ -215,7 +219,7 @@ public class Configs {
      * If key.getKeyString() is "test", <br>
      * getSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param keyPrefix               config key prefix
      * @param key                     config key in configAbsoluteClassPath config file
      * @return config value string. Return null if not add config file or not config in config file.
@@ -236,7 +240,7 @@ public class Configs {
     /**
      * Get self config boolean value
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param key                     config key in configAbsoluteClassPath config file
      * @return true/false. If not add config file or not config in config file, return false.
      * @see #addSelfConfigs(String, OneProperties)
@@ -259,7 +263,7 @@ public class Configs {
      * If key.getKeyString() is "test", <br>
      * isSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param keyPrefix               config key prefix
      * @param key                     config key in configAbsoluteClassPath config file
      * @return true/false. If not add config file or not config in config file, return false.
@@ -280,7 +284,7 @@ public class Configs {
     /**
      * Get self config decimal.
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param key                     config key in configAbsoluteClassPath config file
      * @return config BigDecimal value. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
@@ -303,7 +307,7 @@ public class Configs {
      * If key.getKeyString() is "test", <br>
      * getSelfConfigDecimal("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
+     * @param configAbsoluteClassPath config path.
      * @param keyPrefix               config key prefix
      * @param key                     config key in configAbsoluteClassPath config file
      * @return config BigDecimal value. Return null if not add config file or not config in config file.

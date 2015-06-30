@@ -1,4 +1,11 @@
 ### 0.0.5 ###
+Publish: 2015-06-30
+
+* Fixed
+    1. If not Configs.addSelfConfigs, Configs.getSelfConfig(configAbsoluteClassPath, key) can't get value.
+
+
+### 0.0.5 ###
 Publish: 2015-06-05
 
 * Functions
