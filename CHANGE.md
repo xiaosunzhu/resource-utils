@@ -1,3 +1,11 @@
+### 0.0.7 ###
+Publish: 2015-07-23
+
+* Functions
+    1. Simplify self config usage, provide IConfigKeyWithPath interface to bind an enum class to a config file, 
+    so not need to provide path param when invoke method.
+
+
 ### 0.0.6 ###
 Publish: 2015-06-30
 
