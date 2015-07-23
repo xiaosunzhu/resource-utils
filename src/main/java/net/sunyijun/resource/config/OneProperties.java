@@ -259,7 +259,7 @@ public class OneProperties {
      *
      * @param modifyConfig need update config map.
      */
-    protected void modifyConfig(Map<IConfigKey, String> modifyConfig) throws IOException {
+    protected void modifyConfig(Map<? extends IConfigKey, String> modifyConfig) throws IOException {
         if (propertiesFilePath == null) {
             LOGGER.warn("Config " + propertiesAbsoluteClassPath + " is not a file, maybe just a resource in library.");
         }
