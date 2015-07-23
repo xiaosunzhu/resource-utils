@@ -50,8 +50,9 @@ Tools for easy add configs. The simplest way to use configs:
 - Then define an enum implements IConfigKey, this enum contains config keys in properties file.<br/>
 - After all, you can use static methods in Configs, to get or modify configs in properties file.
 
-### IConfigKey / IConfigKeyHaveDefault
-Config key interface. Normally, use IConfigKey, if you want to provide defualt value when not config, can use IConfigKeyHaveDefault.
+### IConfigKey / IConfigKeyHaveDefault / IConfigKeyWithPath
+Config key interface. Normally, use IConfigKey, if you want to provide defualt value when not config, can use IConfigKeyHaveDefault,
+or if you want to make a enum class map to a properties file, can use IConfigKeyWithPath.
 Use enum to provide config keys like this:
 
     public enum SelfConfig implements IConfigKey {

@@ -329,8 +329,7 @@ public class Configs {
     /**
      * Get self config string.
      *
-     * @param configAbsoluteClassPath config path.
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param key config key with configAbsoluteClassPath in config file
      * @return config value string. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -343,11 +342,11 @@ public class Configs {
      * Get self config string. Config key include prefix.
      * Example:<br>
      * If key.getKeyString() is "test", <br>
-     * getSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     * getSelfConfig("1.", key);
+     * will return "1.test" config value in {@linkplain IConfigKeyWithPath#getConfigPath() path} set in key.
      *
-     * @param configAbsoluteClassPath config path.
-     * @param keyPrefix               config key prefix
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param keyPrefix config key prefix
+     * @param key       config key with configAbsoluteClassPath in config file
      * @return config value string. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -359,8 +358,7 @@ public class Configs {
     /**
      * Get self config boolean value
      *
-     * @param configAbsoluteClassPath config path.
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param key config key with configAbsoluteClassPath in config file
      * @return true/false. If not add config file or not config in config file, return false.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -373,11 +371,11 @@ public class Configs {
      * Get self config boolean value. Config key include prefix.
      * Example:<br>
      * If key.getKeyString() is "test", <br>
-     * isSelfConfig("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     * isSelfConfig("1.", key);
+     * will return "1.test" config value in {@linkplain IConfigKeyWithPath#getConfigPath() path} set in key.
      *
-     * @param configAbsoluteClassPath config path.
-     * @param keyPrefix               config key prefix
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param keyPrefix config key prefix
+     * @param key       config key with configAbsoluteClassPath in config file
      * @return true/false. If not add config file or not config in config file, return false.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -389,8 +387,7 @@ public class Configs {
     /**
      * Get self config decimal.
      *
-     * @param configAbsoluteClassPath config path.
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param key config key with configAbsoluteClassPath in config file
      * @return config BigDecimal value. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -403,11 +400,11 @@ public class Configs {
      * Get self config decimal. Config key include prefix.
      * Example:<br>
      * If key.getKeyString() is "test", <br>
-     * getSelfConfigDecimal("/self.properties", "1.", key); will return "1.test" config value in "/self.properties".
+     * getSelfConfigDecimal("1.", key);
+     * will return "1.test" config value in {@linkplain IConfigKeyWithPath#getConfigPath() path} set in key.
      *
-     * @param configAbsoluteClassPath config path.
-     * @param keyPrefix               config key prefix
-     * @param key                     config key in configAbsoluteClassPath config file
+     * @param keyPrefix config key prefix
+     * @param key       config key with configAbsoluteClassPath in config file
      * @return config BigDecimal value. Return null if not add config file or not config in config file.
      * @see #addSelfConfigs(String, OneProperties)
      */
@@ -546,8 +543,7 @@ public class Configs {
     /**
      * Modify self configs.
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
-     * @param modifyConfig            need update configs. If one value is null, will not update that one.
+     * @param modifyConfig need update configs. If one value is null, will not update that one.
      * @throws IOException
      */
     public static void modifyHavePathSelfConfig(Map<IConfigKeyWithPath, String> modifyConfig) throws IOException {
@@ -574,13 +570,11 @@ public class Configs {
     /**
      * Modify one self config.
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
-     * @param key                     need update config's key
-     * @param value                   new config value
+     * @param key   need update config's key with configAbsoluteClassPath
+     * @param value new config value
      * @throws IOException
      */
-    public static void modifyHavePathSelfConfig(IConfigKeyWithPath key, String value)
-            throws IOException {
+    public static void modifyHavePathSelfConfig(IConfigKeyWithPath key, String value) throws IOException {
         String configAbsoluteClassPath = key.getConfigPath();
         OneProperties configs = otherConfigs.get(configAbsoluteClassPath);
         if (configs == null) {
@@ -593,12 +587,12 @@ public class Configs {
      * Modify one self config. Config key include prefix.
      * Example:<br>
      * If key.getKeyString() is "test", <br>
-     * modifySelfConfig("/self.properties", "1.", key, "newValue"); will modify "1.test" config value in "/self.properties".
+     * modifySelfConfig("1.", key, "newValue");
+     * will modify "1.test" config value in {@linkplain IConfigKeyWithPath#getConfigPath() path} set in key.
      *
-     * @param configAbsoluteClassPath config path. {@link #addSelfConfigs(String, OneProperties)}
-     * @param keyPrefix               config key prefix
-     * @param key                     need update config's key
-     * @param value                   new config value
+     * @param keyPrefix config key prefix
+     * @param key       need update config's key with configAbsoluteClassPath
+     * @param value     new config value
      * @throws IOException
      */
     public static void modifyHavePathSelfConfig(String keyPrefix, IConfigKeyWithPath key, String value)

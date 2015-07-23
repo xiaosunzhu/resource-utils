@@ -17,27 +17,12 @@
 package net.sunyijun.resource.config;
 
 /**
- * <p>Config key interface.</p>
- * <p>Key must implement {@link #getKeyString()} method to
- * provide key string in properties file.</p>
- * Normally, use enum to provide config keys like this:
- * <pre>{@code
- * public enum SelfConfig implements IConfigKey {
- *     CONFIG1("str"),
- *     CONFIG2("bool"),
- *     CONFIG3("num");
- * <p></p>
- *     private final String key;
- * <p></p>
- *     SelfConfig(String key) {
- *         this.key = key;
- *     }
- * <p></p>
- *     public String getKeyString() {
- *         return key;
- *     }
- * }
- * }</pre>
+ * <p>Config key interface, that can
+ * fix implementor map to one properties file.
+ * So you can use {@link Configs#getHavePathSelfConfig(IConfigKeyWithPath)} to fetch value,
+ * without provide path.</p>
+ * Key must implement {@link #getConfigPath()} method to
+ * set the key is in what path.
  *
  * @author yijun.sun
  * @since 0.0.1
@@ -45,7 +30,7 @@ package net.sunyijun.resource.config;
 public interface IConfigKeyWithPath extends IConfigKey {
 
     /**
-     * @return key string in properties file
+     * @return key in which config file path (absolute class path).
      */
     String getConfigPath();
 
